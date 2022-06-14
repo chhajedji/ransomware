@@ -1,0 +1,26 @@
+* Ransomware
+
+A ransomware is a piece of code that encrypts files and denies user
+access. The files can only be decrypted with the key used while encryption.
+
+In this project, Python's ~Fernet~ module is used to generate keys,
+encrypt, and decrypt files.
+
+[[./encrypt.py][encrypt.py]] first generates a /key/ (key.key file).  This is being done
+by ~Fernet.generate_key()~. The key.key file stores the key which will
+be used to encrypt and further decrypt files. ~encrypt.py~ recursively
+iterates and encrypts all the files present in the ~root_dir~. During
+encryption, we need to make sure that we are not encrypting the keys
+or the script used for encryption, or else that might have not end up
+well.
+
+
+[[./decrypt.py][decrypt.py]] iterates through files similar to encrypt.py. Just the
+difference is that instead of encrypting, it decrypts all the files
+using same key which was generated during encryption. Without that
+key, decryption wouldn't work.
+
+
+For recursively iterating files during encryption and decryption,
+[[https://github.com/chhajedji/simple-snippets/tree/master/Python/filelister][FileLister]] is being used, which is just simple recursive way of
+listing all the files in a given directory.
