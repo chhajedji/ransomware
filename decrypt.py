@@ -31,19 +31,21 @@ def list_files(base_dir):
         elif os.path.isfile(os.path.join(base_dir, entry)):
             all_files.append(os.path.join(base_dir, entry))
 
-key = Fernet.generate_key()
-
 list_files(root_dir)
 
 with open("key.key", "rb") as thekey:
     code = thekey.read()
 
 for file in all_files:
-    with open(file, "rb") as enc_file:
-        contents = enc_file.read()
-    raw_contents = Fernet(code).decrypt(contents)
-    with open(file, "wb") as enc_file:
-        enc_file.write(raw_contents)
+    try:
+        with open(file, "rb") as enc_file:
+            contents = enc_file.read()
+        raw_contents = Fernet(code).decrypt(contents)
+        with open(file, "wb") as enc_file:
+            enc_file.write(raw_contents)
+    except:
+        print("{} not decrypted".format(file))
+        pass
 
 print("Files that have been decrypted are:")
 for names in all_files:
