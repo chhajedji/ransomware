@@ -24,3 +24,22 @@ key, decryption wouldn't work.
 For recursively iterating files during encryption and decryption,
 [[https://github.com/chhajedji/simple-snippets/tree/master/Python/filelister][FileLister]] is being used, which is just simple recursive way of
 listing all the files in a given directory.
+
+
+** Usage
+
+For encryption, either give no arguments to run throughout ~test_dir~
+or give specific path:
+
+[[test_dir/img/one.png]]
+
+For specific set of files:
+[[./test_dir/img/two.png]]
+
+
+Decryption:
+
+[[./test_dir/img/three.png]]
+
+For specific set of files:
+[[./test_dir/img/four.png]]
